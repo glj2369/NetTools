@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_main"
+            android:icon="@drawable/home"
+            android:title="主界面" />
+        <item
+            android:id="@+id/nav_ftp"
+            android:icon="@drawable/ftpser"
+            android:title="Ftp服务器" />
+        <item
+            android:id="@+id/nav_ftpClient"
+            android:icon="@drawable/ftpcli"
+            android:title="Ftp客户端" />
+
+        <item
+            android:id="@+id/nav_telnet"
+            android:icon="@drawable/telnet"
+            android:title="Telnet连接" />
+        <item
+            android:id="@+id/nav_ping"
+            android:icon="@drawable/ping"
+            android:title="Ping测试" />
+        <item
+            android:id="@+id/nav_tracert"
+            android:icon="@drawable/tracert"
+            android:title="Tracert测试" />
+        <item
+            android:id="@+id/nav_wol"
+            android:icon="@drawable/wol"
+            android:title="Wol唤醒" />
+        <item
+            android:id="@+id/nav_arp"
+            android:icon="@drawable/tc"
+            android:title="主机探测" />
+        <item
+            android:id="@+id/nav_ip"
+            android:icon="@drawable/www"
+            android:title="域名备案查询" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="其他">
+            <menu>
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/about"
+                    android:title="关于" />
+                <item
+                    android:id="@+id/nav_link"
+                    android:icon="@drawable/qq"
+                    android:title="联系我" />
+            </menu>
+        </item>
+    </group>
+</menu>

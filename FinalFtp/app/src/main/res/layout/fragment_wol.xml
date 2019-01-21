@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.WolFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_margin="2dp">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="广播ip" />
+
+        <EditText
+            android:id="@+id/wol_ipEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:inputType="text"
+            android:singleLine="true"
+            android:background="@drawable/border"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_margin="2dp">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="主机mac地址" />
+
+        <AutoCompleteTextView
+            android:id="@+id/wol_macEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:inputType="text"
+            android:singleLine="true"
+            android:background="@drawable/border"
+            android:completionThreshold="1"
+            android:dropDownHorizontalOffset="5dp"
+            android:dropDownHeight="40dp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/wol_Bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始唤醒"
+        android:background="@drawable/button"
+        android:layout_margin="5dp"/>
+</LinearLayout>

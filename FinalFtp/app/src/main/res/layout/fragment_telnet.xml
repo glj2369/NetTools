@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.TelnetFragment"
+    android:gravity="center">
+
+    <com.yyydjk.library.DropDownMenu
+        android:id="@+id/Tel_dropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/button"
+        android:orientation="vertical"
+        app:dddividerColor="@color/gray"
+        app:ddmaskColor="@color/colorPrimary"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuMenuHeightPercent="0.4"
+        app:ddmenuSelectedIcon="@drawable/up"
+        app:ddmenuTextSize="13sp"
+        app:ddmenuUnselectedIcon="@drawable/down"
+        app:ddtextSelectedColor="@color/colorPrimary"
+        app:ddtextUnselectedColor="@color/drop_down_unselected"
+        app:ddunderlineColor="@color/gray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="ip地址"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/tel_ip"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:hint="ip地址"
+                    android:text=""
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="端口号"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/tel_port"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:hint="端口号"
+                    android:text="23"
+                    android:textSize="15sp"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="用户名"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/tel_user"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:hint="用户名"
+                    android:text="admin"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <!-- 密码 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="密码"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/tel_psw"
+                    android:layout_width="0sp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:hint="密码"
+                    android:text="admin"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnGet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="开启Telnet" />
+
+        </LinearLayout>
+
+    </com.yyydjk.library.DropDownMenu>
+</LinearLayout>

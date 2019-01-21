@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="QMUI.Compat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="QMUI.Compat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="MyToolsAddAvatar" parent="AppTheme">
+        <!--背景色,此处的背景色请一定要设置为透明度背景色-->
+        <item name="android:windowBackground">@color/colorActivity</item>
+        <!--window Is Translucent 窗口是半透明的-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--window No Title窗口无标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--弹出动画-->
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="mystyle" parent="Animation.AppCompat.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/in</item>
+        <item name="@android:windowExitAnimation">@anim/out</item>
+
+    </style>
+
+</resources>
