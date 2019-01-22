@@ -1,11 +1,10 @@
 package Bean;
 
-public class Ipbean {
-
+public class IPBeanV6 {
 
     /**
-     * ip : 175.164.3.178
-     * ip_decimal : 2946761650
+     * ip : 240e:86:f002:8fad:b7d2:b3bd:6336:7fa9
+     * ip_decimal : 47924910695129734634459386596950441897
      * country : China
      * country_eu : false
      * country_iso : CN
@@ -15,7 +14,7 @@ public class Ipbean {
      */
 
     private String ip;
-    private long ip_decimal;
+    private String ip_decimal;
     private String country;
     private boolean country_eu;
     private String country_iso;
@@ -31,11 +30,11 @@ public class Ipbean {
         this.ip = ip;
     }
 
-    public long getIp_decimal() {
+    public String getIp_decimal() {
         return ip_decimal;
     }
 
-    public void setIp_decimal(long ip_decimal) {
+    public void setIp_decimal(String ip_decimal) {
         this.ip_decimal = ip_decimal;
     }
 

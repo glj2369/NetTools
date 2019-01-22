@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.RegexUtils;
 import com.example.glj23.finalftp.R;
@@ -94,7 +97,7 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tracert, container, false);
         initView(view);
-        Dialog();
+        Dialog(true);
         String data = Environment.getExternalStorageDirectory().getAbsolutePath() + "/NetToolDate/ipdata/qqwry.dat";
         File file = new File(data);
         Log.e("ftplog", data);
@@ -134,7 +137,7 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
                     ipHis.setIpDomain(mTrEt.getText().toString().trim());
                     ipHis.save();
                     adapter.add(mTrEt.getText().toString().trim());
-                tipDialog.show();
+                    tipDialog.show();
                     new ExecuteTracerouteAsyncTask(MAX_TTL, mTrEt.getText().toString()).execute();
                     System.out.println("-------------------------------------------------");
                     //System.out.println(new IPAddressUtils().getIp(getActivity(), ""));
@@ -163,11 +166,22 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
         return input != null && input.length() > 0 && Pattern.matches(regex, input);
     }
 
-    private void Dialog() {
-        tipDialog = new QMUITipDialog.Builder(getContext())
-                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                .setTipWord("正在加载")
-                .create();
+    private void Dialog(Boolean b) {
+        if (tipDialog != null && tipDialog.isShowing()) {
+            tipDialog.cancel();
+        }
+        if (b) {
+            tipDialog = new QMUITipDialog.Builder(getContext())
+                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                    .setTipWord("正在加载")
+                    .create();
+        } else {
+            tipDialog = new QMUITipDialog.Builder(getContext())
+                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
+                    .setTipWord("请求失败！")
+                    .create();
+        }
+
     }
 
     private void showResultInLog() {
@@ -261,7 +275,23 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
             p.destroy();
 
             if (res.equals("")) {
-                throw new IllegalArgumentException();
+                    return "";
+              /*  getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Dialog(false);
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (tipDialog != null && tipDialog.isShowing()) {
+                                    tipDialog.cancel();
+                                }
+                            }
+                        }, 1500);
+
+                    }
+                });*/
             }
 // 第一次调用ping命令的时候 记得把取得的最终的ip地址 赋给外面的ipToPing
 // 后面要依据这个ipToPing的值来判断是否到达ip数据报的 终点
@@ -331,7 +361,15 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
             int indexOpen = ping.indexOf(PARENTHESE_OPEN_PING);
             int indexClose = ping.indexOf(PARENTHESE_CLOSE_PING);
 
-            ip = ping.substring(indexOpen + 1, indexClose);
+
+           if (indexClose==-1&& indexOpen==-1){
+                return "";
+
+            }else {
+
+               ip = ping.substring(indexOpen + 1, indexClose);
+            }
+
         }
 
         return ip;

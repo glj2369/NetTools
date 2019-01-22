@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="60dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -25,38 +25,39 @@
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="文件名"
-            android:textStyle="bold"
-            android:marqueeRepeatLimit="marquee_forever"
             android:ellipsize="marquee"
-            android:singleLine="true"/>
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="文件名"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/ftp_time"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="2dp"
+            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="文件修改时间" />
+            android:layout_margin="2dp">
 
+            <TextView
+                android:id="@+id/ftp_time"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="文件修改时间" />
 
+            <TextView
+                android:id="@+id/ftp_size"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="文件大小"
+                android:layout_weight="1"
+                android:layout_margin="2dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="文件大小"
-            android:id="@+id/ftp_size"
-            android:gravity="bottom"/>
-    </LinearLayout>
 
 </LinearLayout>

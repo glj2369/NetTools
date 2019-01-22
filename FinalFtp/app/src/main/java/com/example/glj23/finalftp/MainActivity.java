@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
         initView();
         initData();
         initXG();
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -112,6 +111,8 @@ public class MainActivity extends AppCompatActivity
 
     private void initXG() {
         XGPushConfig.enableDebug(this, true);
+        Log.d("TPush", "设备token为：" + XGPushConfig.getToken(this));
+
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {
@@ -134,7 +135,6 @@ public class MainActivity extends AppCompatActivity
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(netWorkReceiver);
+        //XGPushManager.unregisterPush(this);
     }
 
     private void initView() {

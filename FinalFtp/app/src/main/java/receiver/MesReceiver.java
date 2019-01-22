@@ -1,6 +1,7 @@
 package receiver;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.tencent.android.tpush.XGPushBaseReceiver;
@@ -22,6 +23,11 @@ public class MesReceiver extends XGPushBaseReceiver {
     @Override
     public void onUnregisterResult(Context context, int i) {
 
+        if (i == XGPushBaseReceiver.SUCCESS) {
+            Log.d("TPush", "反注册成功" );
+        } else {
+            Log.d("TPush", "反注册失败" );
+        }
     }
 
     @Override

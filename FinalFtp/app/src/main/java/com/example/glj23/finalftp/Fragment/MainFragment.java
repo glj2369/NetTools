@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.NetworkUtils;
 import com.example.glj23.finalftp.R;
 import com.google.gson.Gson;
 
@@ -25,7 +24,7 @@ import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
-import Bean.Ipbean;
+import Bean.IPBeanV6;
 import dev.DevUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.NetWorkUtils;
@@ -82,7 +81,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    Ipbean ipbean = (Ipbean) msg.obj;
+                    IPBeanV6 ipbean = (IPBeanV6) msg.obj;
                     mWifiOutip.setText(ipbean.getIp());
                     mLoCity.setText(ipbean.getCity());
                     mLoCoun.setText(ipbean.getCountry());
@@ -217,7 +216,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 try {
                     String string = okHttpClient.newCall(build).execute().body().string();
                     Gson gson = new Gson();
-                    Ipbean ipbean = gson.fromJson(string, Ipbean.class);
+                    Log.e("---------",string);
+                    IPBeanV6 ipbean = gson.fromJson(string, IPBeanV6.class);
                     Message message = new Message();
                     if (ipbean != null) {
                         message.what = 0;
