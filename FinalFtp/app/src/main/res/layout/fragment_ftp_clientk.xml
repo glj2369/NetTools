@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".Fragment.FtpClientkFragment"
+    android:gravity="center">
+
+    <com.yyydjk.library.DropDownMenu
+        android:id="@+id/dropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dddividerColor="@color/gray"
+        app:ddmaskColor="@color/colorPrimary"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuMenuHeightPercent="0.4"
+        app:ddmenuTextSize="13sp"
+        app:ddmenuSelectedIcon="@drawable/up"
+        app:ddmenuUnselectedIcon="@drawable/down"
+        app:ddtextSelectedColor="@color/colorPrimary"
+        app:ddtextUnselectedColor="@color/drop_down_unselected"
+        app:ddunderlineColor="@color/gray"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:background="@drawable/button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ip地址"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/ftpcli_ip"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:hint="ip地址"
+                    android:text=""
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="端口号"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/frtpcli_port"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:hint="端口号"
+                    android:text="2222"
+                    android:textSize="15sp"
+                    android:gravity="center"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="用户名"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etUserName"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:hint="用户名"
+                    android:text="admin"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+            <!-- 密码 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="密码"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etPwd"
+                    android:layout_width="0sp"
+                    android:layout_height="50dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border"
+                    android:hint="密码"
+                    android:text="123"
+                    android:textSize="15sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnGet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="start" />
+
+        </LinearLayout>
+
+    </com.yyydjk.library.DropDownMenu>
+
+
+
+
+
+</LinearLayout>
