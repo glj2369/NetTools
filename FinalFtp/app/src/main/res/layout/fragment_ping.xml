@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.PingFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ping_tv"
+        android:textSize="20sp"
+        android:hint="服务器返回信息"
+        android:gravity="center"/>
+</ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="1"
+            android:text="超时:"
+            android:textSize="15sp"
+            android:gravity="center"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="5"
+            android:id="@+id/ping_timeEt"
+            android:gravity="center"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="2"
+            android:text="尝试次数:"
+            android:textSize="15sp"
+            android:gravity="center"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="4"
+            android:id="@+id/ping_countEt"
+            android:gravity="center"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="2.3"
+            android:text="数据包大小:"
+            android:textSize="15sp"
+            android:gravity="center"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="64"
+            android:id="@+id/ping_dataEt"
+            android:gravity="center"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <AutoCompleteTextView
+        android:layout_margin="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="主机名或域名"
+        android:maxLines="1"
+        android:minLines="1"
+        android:id="@+id/ping_ipEt"
+        android:inputType="text"
+        android:completionThreshold="1"
+        android:dropDownHorizontalOffset="5dp"
+        android:dropDownHeight="200dp"
+        android:background="@drawable/border"
+        android:gravity="center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ping"
+        android:id="@+id/ping_startBt"
+        android:background="@drawable/button"/>
+</LinearLayout>

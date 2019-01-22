@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -68,6 +67,13 @@ dependencies {
     implementation 'com.tencent.wup:wup:1.0.0.E-release'
     //mid包，minSdkVersion 14
     implementation 'com.tencent.mid:mid:4.0.7-Release'
+    implementation files('libs/commons-net-3.6.jar')
+    implementation files('libs/ftp4j-1.7.2.jar')
+    implementation files('libs/ftpserver-core-1.0.6.jar')
+    implementation files('libs/log4j-1.2.14.jar')
+    implementation files('libs/mina-core-2.0.4.jar')
+    implementation files('libs/slf4j-api-1.5.2.jar')
+    implementation files('libs/slf4j-log4j12-1.5.2.jar')
 }
 
 //指定编译的编码
