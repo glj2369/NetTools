@@ -3,8 +3,10 @@ package com.example.glj23.finalftp;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -426,69 +428,25 @@ public class FtpClientActivity extends AppCompatActivity implements View.OnClick
         ftpBinder.FtpDown(list.get(position).getName(), path, new MyListener("down", fileSize));
     }
 
-    class MyListener implements FTPDataTransferListener {
-        private String s;
-        private long fileSize;
+    public Notification getNotification(String title, int progress) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "2");
+        builder.setSmallIcon(R.drawable.ftpclient);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ftpcli
 
-        public MyListener() {
+        ));
+        builder.setContentTitle(title);
+        if (progress >= 0) {
+            // 当progress大于或等于0时才需显示下载进度
+            builder.setContentText(progress + "%");
+            builder.setProgress(100, progress, false);
         }
 
-        public MyListener(String s, long fileSize) {
-            this.s = s;
-            this.fileSize = fileSize;
-            progress = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("2", "普通信息", NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(channel);
         }
-
-        @Override
-        public void started() {
-            if (s.equals("down")) {
-                notificationManager.notify(2, getNotification("开始下载", 0));
-            } else {
-                notificationManager.notify(2, getNotification("开始上传", 0));
-            }
-
-        }
-
-        @Override
-        public void transferred(int i) {
-            Log.e("----------", i + "");
-            int length = (int) ((progress += i) * 100 / fileSize);
-            Log.e("----------", progress + " " + length);
-            notificationManager.notify(2, getNotification("请稍后", length));
-        }
-
-        @Override
-        public void completed() {
-            if (s.equals("down")) {
-                notificationManager.notify(2, getNotification("下载完成！", 100));
-                tipDialog("下载完成!", 1);
-            } else {
-                notificationManager.notify(2, getNotification("上传完成！", 100));
-                tipDialog("上传完成!", 1);
-                resh();
-            }
-
-        }
-
-        @Override
-        public void aborted() {
-            if (s.equals("down")) {
-                tipDialog("下载失败!", 0);
-
-            } else {
-                tipDialog("上传失败!", 0);
-            }
-        }
-
-        @Override
-        public void failed() {
-            if (s.equals("down")) {
-                tipDialog("下载失败!", 0);
-
-            } else {
-                tipDialog("上传失败!", 0);
-            }
-        }
+        return builder.build();
     }
 
     private void tipDialog(final String s, final int b) {
@@ -533,26 +491,11 @@ public class FtpClientActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-
-    public Notification getNotification(String title, int progress) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-        builder.setContentTitle(title);
-        if (progress >= 0) {
-            // 当progress大于或等于0时才需显示下载进度
-            builder.setContentText(progress + "%");
-            builder.setProgress(100, progress, false);
-        }
-        return builder.build();
-    }
-
-
     private void initView() {
-        mFtpList = (ListView) findViewById(R.id.ftp_list);
+        mFtpList = findViewById(R.id.ftp_list);
         adapter = new FtpListAdapter(this, R.layout.ftpclistitem, list);
-        mFtpToolbar = (Toolbar) findViewById(R.id.ftp_toolbar);
-        mFloataction = (FloatingActionButton) findViewById(R.id.floataction);
+        mFtpToolbar = findViewById(R.id.ftp_toolbar);
+        mFloataction = findViewById(R.id.floataction);
         mFloataction.setOnClickListener(this);
         view1 = LayoutInflater.from(this).inflate(R.layout.ftpdel, null);
 
@@ -560,6 +503,81 @@ public class FtpClientActivity extends AppCompatActivity implements View.OnClick
         delBt.setOnClickListener(this);
         nameBt = view1.findViewById(R.id.ftp_rename);
         nameBt.setOnClickListener(this);
+    }
+
+    class MyListener implements FTPDataTransferListener {
+        private String s;
+        private long fileSize;
+
+        public MyListener() {
+        }
+
+        public MyListener(String s, long fileSize) {
+            this.s = s;
+            this.fileSize = fileSize;
+            progress = 0;
+        }
+
+        @Override
+        public void started() {
+            if (s.equals("down")) {
+                notificationManager.notify(2, getNotification("开始下载", 0));
+            } else {
+                notificationManager.notify(5, getNotification("开始上传", 0));
+            }
+
+        }
+
+        @Override
+        public void transferred(int i) {
+
+            if (s.equals("down")) {
+                Log.e("----------", i + "");
+                int length = (int) ((progress += i) * 100 / fileSize);
+                Log.e("----------", progress + " " + length);
+                notificationManager.notify(2, getNotification("请稍后", length));
+            } else {
+                Log.e("----------", i + "");
+                int length = (int) ((progress += i) * 100 / fileSize);
+                Log.e("----------", progress + " " + length);
+                notificationManager.notify(5, getNotification("请稍后", length));
+            }
+
+
+        }
+
+        @Override
+        public void completed() {
+            if (s.equals("down")) {
+                notificationManager.notify(2, getNotification("下载完成！", 100));
+                tipDialog("下载完成!", 1);
+            } else {
+                notificationManager.notify(5, getNotification("上传完成！", 100));
+                tipDialog("上传完成!", 1);
+                resh();
+            }
+
+        }
+
+        @Override
+        public void aborted() {
+            if (s.equals("down")) {
+                tipDialog("下载失败!", 0);
+
+            } else {
+                tipDialog("上传失败!", 0);
+            }
+        }
+
+        @Override
+        public void failed() {
+            if (s.equals("down")) {
+                tipDialog("下载失败!", 0);
+
+            } else {
+                tipDialog("上传失败!", 0);
+            }
+        }
     }
 
     @Override

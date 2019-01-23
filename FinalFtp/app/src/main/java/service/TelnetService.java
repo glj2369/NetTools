@@ -1,6 +1,5 @@
 package service;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,20 +8,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
-import com.example.glj23.finalftp.MainActivity;
 import com.example.glj23.finalftp.R;
 import com.example.glj23.finalftp.TelnetActivity;
 
-import java.io.Serializable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,17 +46,18 @@ public class TelnetService extends Service {
         Intent intent = new Intent(this, TelnetActivity.class);
         intent.putExtra("ftpServer", 1);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        Notification.Builder notification = new Notification.Builder(this)
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this, "1")
                 .setContentTitle("Telnet已开启")
                 .setContentText("Telnet客户端正在工作中")
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.telnet)
+                .setSmallIcon(R.drawable.telneticon)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.telnet
+                ))
                 .setContentIntent(pendingIntent);
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("1", "服务信息", NotificationManager.IMPORTANCE_HIGH);
             manager.createNotificationChannel(channel);
-            notification.setChannelId("2");
         }
 
         startForeground(4, notification.build());
@@ -103,12 +101,12 @@ public class TelnetService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (telnet != null&&telnet.isComm()) {
+        if (telnet != null && telnet.isComm()) {
             telnet.disconnect();
         }
         singleThreadExecutor.shutdown();//关闭线程
         localBroadcastManager.unregisterReceiver(telBroad);
-        Log.e("---------","Tel服务销毁！");
+        Log.e("---------", "Tel服务销毁！");
     }
 
     class TelBroad extends BroadcastReceiver {

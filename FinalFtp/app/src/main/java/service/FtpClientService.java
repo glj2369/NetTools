@@ -1,6 +1,5 @@
 package service;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,9 +7,11 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.glj23.finalftp.FtpClientActivity;
@@ -35,18 +36,20 @@ public class FtpClientService extends Service {
         super.onCreate();
         Intent intent1 = new Intent(this, FtpClientActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
-        Notification.Builder notification = new Notification.Builder(this)
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this, "1")
                 .setContentTitle("Ftp客户端已开启")
                 .setContentText("Ftp客户端正在连接中")
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ftpcli)
+                .setSmallIcon(R.drawable.ftpclient)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ftpcli
+                ))
                 .setContentIntent(pendingIntent);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("1", "服务信息", NotificationManager.IMPORTANCE_HIGH);
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             manager.createNotificationChannel(channel);
-            notification.setChannelId("1");
         }
         startForeground(1, notification.build());
 
