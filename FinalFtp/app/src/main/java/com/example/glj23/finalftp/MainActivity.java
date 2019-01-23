@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.example.glj23.finalftp.Fragment.AboutFragment;
 import com.example.glj23.finalftp.Fragment.ArpFragment;
 import com.example.glj23.finalftp.Fragment.FtpClientkFragment;
@@ -338,12 +337,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        ToastUtils.showShort("用户授权成功");
+        Toasty.success(this, "用户授权成功！", Toast.LENGTH_SHORT, true).show();
+
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-        ToastUtils.showShort("用户授权失败！");
+        Toasty.error(this, "用户授权失败！", Toast.LENGTH_SHORT, true).show();
+
 
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
 
@@ -362,9 +363,10 @@ public class MainActivity extends AppCompatActivity
                 //ToastUtils.showShort("设置返回！");
 
                 if (EasyPermissions.hasPermissions(this, perms)) {
-                    ToastUtils.showShort("用户授权成功！");
+                    Toasty.success(this, "用户授权成功！", Toast.LENGTH_SHORT, true).show();
+
                 } else {
-                    ToastUtils.showShort("用户授权失败！");
+                    Toasty.error(this, "用户授权失败！", Toast.LENGTH_SHORT, true).show();
                 }
                 break;
         }
