@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -107,10 +106,10 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mArpBt = (Button) view.findViewById(R.id.arp_Bt);
+        mArpBt = view.findViewById(R.id.arp_Bt);
         mArpBt.setOnClickListener(this);
-        mArpTv = (TextView) view.findViewById(R.id.arp_Tv);
-        mArpLi = (ListView) view.findViewById(R.id.arp_li);
+        mArpTv = view.findViewById(R.id.arp_Tv);
+        mArpLi = view.findViewById(R.id.arp_li);
         timer = new Timer();
         arpList = new ArpList(getContext(), R.layout.arplistitem, list);
         mArpLi.setAdapter(arpList);

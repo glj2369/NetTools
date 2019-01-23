@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.NetworkUtils;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import Bean.IpHis;
 import Bean.MacHis;
 import Util.WolWakeUtil;
 import es.dmoral.toasty.Toasty;
@@ -76,9 +74,9 @@ public class WolFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mWolIpEt = (EditText) view.findViewById(R.id.wol_ipEt);
+        mWolIpEt = view.findViewById(R.id.wol_ipEt);
         mWolMacEt =  view.findViewById(R.id.wol_macEt);
-        mWolBt = (Button) view.findViewById(R.id.wol_Bt);
+        mWolBt = view.findViewById(R.id.wol_Bt);
         mWolBt.setOnClickListener(this);
     }
 

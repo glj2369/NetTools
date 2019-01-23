@@ -106,15 +106,15 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
 
 
     private void initView() {
-        mBtFtp = (Button) view.findViewById(R.id.bt_ftp);
+        mBtFtp = view.findViewById(R.id.bt_ftp);
         mBtFtp.setOnClickListener(this);
-        mTvFtptt = (TextView) view.findViewById(R.id.tv_ftptt);
-        mTvFtpdz = (TextView) view.findViewById(R.id.tv_ftpdz);
+        mTvFtptt = view.findViewById(R.id.tv_ftptt);
+        mTvFtpdz = view.findViewById(R.id.tv_ftpdz);
         context = getContext().getApplicationContext();
-        mServerUser = (EditText) view.findViewById(R.id.server_user);
-        mServerPsw = (EditText) view.findViewById(R.id.server_psw);
-        mServerPort = (EditText) view.findViewById(R.id.server_port);
-        mServerSave = (Button) view.findViewById(R.id.server_save);
+        mServerUser = view.findViewById(R.id.server_user);
+        mServerPsw = view.findViewById(R.id.server_psw);
+        mServerPort = view.findViewById(R.id.server_port);
+        mServerSave = view.findViewById(R.id.server_save);
         mServerSave.setOnClickListener(this);
     }
 

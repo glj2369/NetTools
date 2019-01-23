@@ -141,23 +141,23 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
 
-        mResBt = (Button) view.findViewById(R.id.resBt);
+        mResBt = view.findViewById(R.id.resBt);
         mResBt.setOnClickListener(this);
-        mCountBt = (Button) view.findViewById(R.id.countBt);
+        mCountBt = view.findViewById(R.id.countBt);
         mCountBt.setOnClickListener(this);
-        mIpDomain = (AutoCompleteTextView) view.findViewById(R.id.ip_domain);
-        mIpIp = (TextView) view.findViewById(R.id.ip_ip);
-        mIpNature = (TextView) view.findViewById(R.id.ip_nature);
-        mIpIcp = (TextView) view.findViewById(R.id.ip_icp);
-        mIpIndexUrl = (TextView) view.findViewById(R.id.ip_indexUrl);
-        mIpSitename = (TextView) view.findViewById(R.id.ip_sitename);
-        mIpBadomain = (TextView) view.findViewById(R.id.ip_badomain);
-        mIpNowIcp = (TextView) view.findViewById(R.id.ip_nowIcp);
-        mIpCheckDate = (TextView) view.findViewById(R.id.ip_checkDate);
-        mIpName = (TextView) view.findViewById(R.id.ip_name);
-        mDomainLayout = (LinearLayout) view.findViewById(R.id.domainLayout);
-        mError = (TextView) view.findViewById(R.id.error);
-        mDimainError = (LinearLayout) view.findViewById(R.id.dimainError);
+        mIpDomain = view.findViewById(R.id.ip_domain);
+        mIpIp = view.findViewById(R.id.ip_ip);
+        mIpNature = view.findViewById(R.id.ip_nature);
+        mIpIcp = view.findViewById(R.id.ip_icp);
+        mIpIndexUrl = view.findViewById(R.id.ip_indexUrl);
+        mIpSitename = view.findViewById(R.id.ip_sitename);
+        mIpBadomain = view.findViewById(R.id.ip_badomain);
+        mIpNowIcp = view.findViewById(R.id.ip_nowIcp);
+        mIpCheckDate = view.findViewById(R.id.ip_checkDate);
+        mIpName = view.findViewById(R.id.ip_name);
+        mDomainLayout = view.findViewById(R.id.domainLayout);
+        mError = view.findViewById(R.id.error);
+        mDimainError = view.findViewById(R.id.dimainError);
     }
 
     @Override

@@ -82,31 +82,25 @@ public class MainActivity extends AppCompatActivity
     private Boolean flag = true;
     private String[] perms;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
-        initView();
-        initData();
-        initXG();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    @SuppressLint("LongLogTag")
+    public static String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                    .getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress()) {
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.e("WifiPreference IpAddress", ex.toString());
+        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        checkPer();
-
-
+        return null;
     }
 
     private void initXG() {
@@ -151,7 +145,6 @@ public class MainActivity extends AppCompatActivity
             //Toast.makeText(this, mNetWork.getText(), Toast.LENGTH_SHORT).show();
             mNetPic.setBackgroundResource(R.drawable.dw);
             mIpAddress.setText("当前无网络");
-            ;
         } else if (apnType == 1) {
             mNetWork.setText(getString(R.string.wifi));
             mNetPic.setBackgroundResource(R.drawable.wifi);
@@ -170,15 +163,31 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+        initView();
+        initData();
+        initXG();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        checkPer();
+
+
     }
 
     @Override
@@ -201,41 +210,14 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_ftp) {
-            // Handle the camera action
-            replaceFragment(new FtpFragment());
-        } else if (id == R.id.nav_telnet) {
-            replaceFragment(new TelnetFragment());
-        } else if (id == R.id.nav_ping) {
-
-            replaceFragment(new PingFragment());
-        } else if (id == R.id.nav_tracert) {
-            replaceFragment(new TracertFragment());
-        } else if (id == R.id.nav_wol) {
-            replaceFragment(new WolFragment());
-        } else if (id == R.id.nav_main) {
-            replaceFragment(new MainFragment());
-        } else if (id == R.id.nav_arp) {
-            replaceFragment(new ArpFragment());
-        } else if (id == R.id.nav_ftpClient) {
-            replaceFragment(new FtpClientkFragment());
-        } else if (id == R.id.nav_ip) {
-            replaceFragment(new ipCountFragment());
-        } else if (id == R.id.nav_about) {
-            replaceFragment(new AboutFragment());
-        } else if (id == R.id.nav_link) {
-            joinQQ();
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     /**
@@ -278,39 +260,55 @@ public class MainActivity extends AppCompatActivity
         //XGPushManager.unregisterPush(this);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_ftp) {
+            // Handle the camera action
+            replaceFragment(new FtpFragment());
+        } else if (id == R.id.nav_telnet) {
+            replaceFragment(new TelnetFragment());
+        } else if (id == R.id.nav_ping) {
+
+            replaceFragment(new PingFragment());
+        } else if (id == R.id.nav_tracert) {
+            replaceFragment(new TracertFragment());
+        } else if (id == R.id.nav_wol) {
+            replaceFragment(new WolFragment());
+        } else if (id == R.id.nav_main) {
+            replaceFragment(new MainFragment());
+        } else if (id == R.id.nav_arp) {
+            replaceFragment(new ArpFragment());
+        } else if (id == R.id.nav_ftpClient) {
+            replaceFragment(new FtpClientkFragment());
+        } else if (id == R.id.nav_ip) {
+            replaceFragment(new ipCountFragment());
+        } else if (id == R.id.nav_about) {
+            replaceFragment(new AboutFragment());
+        } else if (id == R.id.nav_link) {
+            joinQQ();
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     private void initView() {
-        mPhone = (TextView) findViewById(R.id.phone);
-        mIpAddress = (TextView) findViewById(R.id.ipAddress);
-        mNetPic = (ImageView) findViewById(R.id.netPic);
-        mAndroid = (TextView) findViewById(R.id.android);
-        mNetWork = (TextView) findViewById(R.id.netWork);
+        mPhone = findViewById(R.id.phone);
+        mIpAddress = findViewById(R.id.ipAddress);
+        mNetPic = findViewById(R.id.netPic);
+        mAndroid = findViewById(R.id.android);
+        mNetWork = findViewById(R.id.netWork);
         replaceFragment(new MainFragment());
         netWorkReceiver = new NetWorkReceiver();
         intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkReceiver, intentFilter);
         perms = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE};
 
-    }
-
-    @SuppressLint("LongLogTag")
-    public static String getLocalIpAddress() {
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface
-                    .getNetworkInterfaces(); en.hasMoreElements(); ) {
-                NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf
-                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress()) {
-                        return inetAddress.getHostAddress().toString();
-                    }
-                }
-            }
-        } catch (SocketException ex) {
-            Log.e("WifiPreference IpAddress", ex.toString());
-        }
-
-        return null;
     }
 
     @Override

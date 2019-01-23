@@ -2,7 +2,6 @@ package com.example.glj23.finalftp.Fragment;
 
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -146,12 +145,12 @@ public class PingFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mPingTv = (TextView) view.findViewById(R.id.ping_tv);
-        mPingTimeEt = (EditText) view.findViewById(R.id.ping_timeEt);
-        mPingCountEt = (EditText) view.findViewById(R.id.ping_countEt);
-        mPingDataEt = (EditText) view.findViewById(R.id.ping_dataEt);
+        mPingTv = view.findViewById(R.id.ping_tv);
+        mPingTimeEt = view.findViewById(R.id.ping_timeEt);
+        mPingCountEt = view.findViewById(R.id.ping_countEt);
+        mPingDataEt = view.findViewById(R.id.ping_dataEt);
         mPingIpEt = view.findViewById(R.id.ping_ipEt);
-        mPingStartBt = (Button) view.findViewById(R.id.ping_startBt);
+        mPingStartBt = view.findViewById(R.id.ping_startBt);
         mPingStartBt.setOnClickListener(this);
     }
 

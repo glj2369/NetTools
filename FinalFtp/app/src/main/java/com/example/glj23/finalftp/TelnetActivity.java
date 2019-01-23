@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import Bean.TelHis;
 import Util.TelnetUtil;
@@ -102,15 +101,15 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-        mTelnetTv = (TextView) findViewById(R.id.telnet_Tv);
-        mTelnetScrow = (ScrollView) findViewById(R.id.telnet_scrow);
-        mTelnetEt = (EditText) findViewById(R.id.telnet_Et);
-        mTelnetSend = (Button) findViewById(R.id.telnet_send);
+        mTelnetTv = findViewById(R.id.telnet_Tv);
+        mTelnetScrow = findViewById(R.id.telnet_scrow);
+        mTelnetEt = findViewById(R.id.telnet_Et);
+        mTelnetSend = findViewById(R.id.telnet_send);
         mTelnetSend.setOnClickListener(this);
-        mTelnetExit = (Button) findViewById(R.id.telnet_exit);
+        mTelnetExit = findViewById(R.id.telnet_exit);
         mTelnetExit.setOnClickListener(this);
         mTelnetTv.setMovementMethod(ScrollingMovementMethod.getInstance());
-        mTelToolbar = (Toolbar) findViewById(R.id.tel_toolbar);
+        mTelToolbar = findViewById(R.id.tel_toolbar);
         dialog();
     }
 

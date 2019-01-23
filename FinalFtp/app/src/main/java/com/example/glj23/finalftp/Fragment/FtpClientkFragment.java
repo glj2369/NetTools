@@ -115,13 +115,13 @@ public class FtpClientkFragment extends Fragment implements View.OnClickListener
 
     private void initView(View inflate) {
 
-        mEtUserName = (EditText) inflate.findViewById(R.id.etUserName);
-        mEtPwd = (EditText) inflate.findViewById(R.id.etPwd);
-        mBtnGet = (Button) inflate.findViewById(R.id.btnGet);
+        mEtUserName = inflate.findViewById(R.id.etUserName);
+        mEtPwd = inflate.findViewById(R.id.etPwd);
+        mBtnGet = inflate.findViewById(R.id.btnGet);
         mBtnGet.setOnClickListener(this);
-        mFtpcliIp = (EditText) inflate.findViewById(R.id.ftpcli_ip);
-        mFrtpcliPort = (EditText) inflate.findViewById(R.id.frtpcli_port);
-        mDropDownMenu = (DropDownMenu) inflate.findViewById(R.id.dropDownMenu);
+        mFtpcliIp = inflate.findViewById(R.id.ftpcli_ip);
+        mFrtpcliPort = inflate.findViewById(R.id.frtpcli_port);
+        mDropDownMenu = inflate.findViewById(R.id.dropDownMenu);
 
     }
 

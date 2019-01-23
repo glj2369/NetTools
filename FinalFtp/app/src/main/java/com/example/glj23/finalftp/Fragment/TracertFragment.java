@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.RegexUtils;
 import com.example.glj23.finalftp.R;
@@ -117,9 +114,9 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mTraTv = (TextView) view.findViewById(R.id.tra_Tv);
+        mTraTv = view.findViewById(R.id.tra_Tv);
         mTrEt = view.findViewById(R.id.tr_Et);
-        mTrBt = (Button) view.findViewById(R.id.tr_Bt);
+        mTrBt = view.findViewById(R.id.tr_Bt);
         mTrBt.setOnClickListener(this);
     }
 

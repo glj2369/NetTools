@@ -105,13 +105,13 @@ public class TelnetFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
 
-        mTelIp = (EditText) view.findViewById(R.id.tel_ip);
-        mTelPort = (EditText) view.findViewById(R.id.tel_port);
-        mTelUser = (EditText) view.findViewById(R.id.tel_user);
-        mTelPsw = (EditText) view.findViewById(R.id.tel_psw);
-        mBtnGet = (Button) view.findViewById(R.id.btnGet);
+        mTelIp = view.findViewById(R.id.tel_ip);
+        mTelPort = view.findViewById(R.id.tel_port);
+        mTelUser = view.findViewById(R.id.tel_user);
+        mTelPsw = view.findViewById(R.id.tel_psw);
+        mBtnGet = view.findViewById(R.id.btnGet);
         mBtnGet.setOnClickListener(this);
-        mTelDropDownMenu = (DropDownMenu) view.findViewById(R.id.Tel_dropDownMenu);
+        mTelDropDownMenu = view.findViewById(R.id.Tel_dropDownMenu);
     }
 
 

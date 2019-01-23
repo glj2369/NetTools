@@ -177,21 +177,21 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mWifiSsid = (TextView) view.findViewById(R.id.wifi_ssid);
-        mWifiIp = (TextView) view.findViewById(R.id.wifi_ip);
-        mWifiOutip = (TextView) view.findViewById(R.id.wifi_outip);
-        mWifiGbip = (TextView) view.findViewById(R.id.wifi_gbip);
-        mWifiWgip = (TextView) view.findViewById(R.id.wifi_wgip);
-        mWifiMac = (TextView) view.findViewById(R.id.wifi_mac);
+        mWifiSsid = view.findViewById(R.id.wifi_ssid);
+        mWifiIp = view.findViewById(R.id.wifi_ip);
+        mWifiOutip = view.findViewById(R.id.wifi_outip);
+        mWifiGbip = view.findViewById(R.id.wifi_gbip);
+        mWifiWgip = view.findViewById(R.id.wifi_wgip);
+        mWifiMac = view.findViewById(R.id.wifi_mac);
         DevUtils.init(getContext());
         wifiUtils = new WifiUtils();
-        mWifiBssid = (TextView) view.findViewById(R.id.wifi_bssid);
-        mLoCity = (TextView) view.findViewById(R.id.lo_city);
-        mLoYys = (TextView) view.findViewById(R.id.lo_yys);
-        mLoWd = (TextView) view.findViewById(R.id.lo_wd);
-        mLoJd = (TextView) view.findViewById(R.id.lo_jd);
-        mLoCiso = (TextView) view.findViewById(R.id.lo_ciso);
-        mLoCoun = (TextView) view.findViewById(R.id.lo_coun);
+        mWifiBssid = view.findViewById(R.id.wifi_bssid);
+        mLoCity = view.findViewById(R.id.lo_city);
+        mLoYys = view.findViewById(R.id.lo_yys);
+        mLoWd = view.findViewById(R.id.lo_wd);
+        mLoJd = view.findViewById(R.id.lo_jd);
+        mLoCiso = view.findViewById(R.id.lo_ciso);
+        mLoCoun = view.findViewById(R.id.lo_coun);
         netWorkReceiver = new NetWorkReceiver();
         intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         getContext().registerReceiver(netWorkReceiver, intentFilter);

@@ -48,9 +48,9 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        mClear = (Button) view.findViewById(R.id.clear);
+        mClear = view.findViewById(R.id.clear);
         mClear.setOnClickListener(this);
-        mGrav = (GravView) view.findViewById(R.id.grav);
+        mGrav = view.findViewById(R.id.grav);
     }
 
     @Override
