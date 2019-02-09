@@ -32,7 +32,6 @@ import es.dmoral.toasty.Toasty;
  */
 public class WolFragment extends Fragment implements View.OnClickListener {
 
-
     private View view;
     private EditText mWolIpEt;
     private AutoCompleteTextView mWolMacEt;
@@ -48,7 +47,6 @@ public class WolFragment extends Fragment implements View.OnClickListener {
     public WolFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -56,7 +54,6 @@ public class WolFragment extends Fragment implements View.OnClickListener {
             builder.cancel();
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,14 +69,12 @@ public class WolFragment extends Fragment implements View.OnClickListener {
         mWolMacEt.setAdapter(adapter);
         return view;
     }
-
     private void initView(View view) {
         mWolIpEt = view.findViewById(R.id.wol_ipEt);
         mWolMacEt =  view.findViewById(R.id.wol_macEt);
         mWolBt = view.findViewById(R.id.wol_Bt);
         mWolBt.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -111,12 +106,9 @@ public class WolFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-
     public static boolean isMac(final CharSequence input) {
         return isMatch("([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}", input);
     }
-
     public static boolean isMatch(final String regex, final CharSequence input) {
         return input != null && input.length() > 0 && Pattern.matches(regex, input);
     }

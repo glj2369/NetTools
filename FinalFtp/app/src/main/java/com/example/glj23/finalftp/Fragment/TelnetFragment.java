@@ -34,7 +34,6 @@ import adapter.TelAdapter;
  */
 public class TelnetFragment extends Fragment implements View.OnClickListener {
 
-
     /**  */
     private EditText mTelIp;
     /**
@@ -59,11 +58,9 @@ public class TelnetFragment extends Fragment implements View.OnClickListener {
     private TelAdapter adapter;
     private List<TelHis> all;
     private AlertDialog builder;
-
     public TelnetFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +99,6 @@ public class TelnetFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
     private void initView(View view) {
 
         mTelIp = view.findViewById(R.id.tel_ip);
@@ -113,15 +109,11 @@ public class TelnetFragment extends Fragment implements View.OnClickListener {
         mBtnGet.setOnClickListener(this);
         mTelDropDownMenu = view.findViewById(R.id.Tel_dropDownMenu);
     }
-
-
     @Override
     public void onResume() {
         super.onResume();
 
     }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -130,8 +122,6 @@ public class TelnetFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

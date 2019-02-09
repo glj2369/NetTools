@@ -67,8 +67,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
     public ArpFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +86,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -96,7 +93,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
             timer.cancel();
         }
     }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -104,7 +100,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
             timer.cancel();
         }
     }
-
     private void initView(View view) {
         mArpBt = view.findViewById(R.id.arp_Bt);
         mArpBt.setOnClickListener(this);
@@ -114,7 +109,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
         arpList = new ArpList(getContext(), R.layout.arplistitem, list);
         mArpLi.setAdapter(arpList);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -127,7 +121,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
     // 根据ip 网段去 发送arp 请求
     private void discover(String ip) {
         String newip = "";
@@ -142,7 +135,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
             }
         }
     }
-
     //读取qrp表
     private void readArp() {
         list.clear();
@@ -174,7 +166,6 @@ public class ArpFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
         }
     }
-
     // UDPThread
     public class UDPThread extends Thread {
         private String target_ip = "";

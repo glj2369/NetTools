@@ -39,8 +39,6 @@ public class FtpService extends Service {
 
     public FtpService() {
     }
-
-
     void start() {
         SharedPreferences ftpServer = getSharedPreferences("FtpServer", MODE_PRIVATE);
         String username = ftpServer.getString("user", "admin");
@@ -50,6 +48,7 @@ public class FtpService extends Service {
         Log.e("-------", "Ftp开始start");
         FtpServerFactory serverFactory = new FtpServerFactory();
         ListenerFactory factory = new ListenerFactory();
+
         /*PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
         String[] str = {"mkdir", ftpConfigDir};
         try {
@@ -94,13 +93,13 @@ public class FtpService extends Service {
             serverFactory.addListener("default", factory.createListener());
             FtpServer server = serverFactory.createServer();
             this.mFtpServer = server;
+
             server.start();
         } catch (FtpException e) {
             stopSelf();
             e.printStackTrace();
         }
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -131,7 +130,6 @@ public class FtpService extends Service {
 
         Log.e("---------", "ftp服务器创建");
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("----------", "onStartCommand");
@@ -141,14 +139,11 @@ public class FtpService extends Service {
         ftpSh(true);
         return super.onStartCommand(intent, flags, startId);
     }
-
     private void ftpSh(boolean b) {
         SharedPreferences.Editor ftp = getSharedPreferences("ftp", MODE_PRIVATE).edit();
         ftp.putBoolean("start", b);
         ftp.apply();
     }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -160,13 +155,10 @@ public class FtpService extends Service {
         localBroadcastManager.unregisterReceiver(localBroadRe);
 
     }
-
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-
     class LocalBroadRe extends BroadcastReceiver {
 
         @Override

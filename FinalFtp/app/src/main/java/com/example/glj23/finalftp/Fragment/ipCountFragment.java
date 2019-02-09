@@ -108,11 +108,9 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
         }
     };
     private AlertDialog builder;
-
     public ipCountFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -120,7 +118,6 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
             builder.cancel();
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -137,7 +134,6 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
         mIpDomain.setAdapter(adapter);
         return view;
     }
-
 
     private void initView(View view) {
 
@@ -159,7 +155,6 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
         mError = view.findViewById(R.id.error);
         mDimainError = view.findViewById(R.id.dimainError);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -195,15 +190,12 @@ public class ipCountFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
     public static boolean isDomain(final CharSequence input) {
         return isMatch("^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$", input);
     }
-
     public static boolean isMatch(final String regex, final CharSequence input) {
         return input != null && input.length() > 0 && Pattern.matches(regex, input);
     }
-
     public void getInfo(final String s) {
         new Thread(new Runnable() {
             @Override

@@ -104,8 +104,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public MainFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,7 +115,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         Log.e("-----", "onCreateView");
         return view;
     }
-
     private void initDate() {
         mWifiSsid.setText(WifiUtils.getSSID());
         if (AppCommonUtils.isO()) {
@@ -131,19 +128,16 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         mWifiBssid.setText(wifiUtils.getBSSID(wifiUtils.getWifiInfo()));
         mLoYys.setText(NetWorkUtils.getNetworkOperatorName());
     }
-
     @Override
     public void onResume() {
         super.onResume();
 
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         getContext().unregisterReceiver(netWorkReceiver);
     }
-
     private String getWifiMacAddress() {
         String defaultMac = "02:00:00:00:00:00";
         try {
@@ -175,7 +169,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         }
         return defaultMac;
     }
-
     private void initView(View view) {
         mWifiSsid = view.findViewById(R.id.wifi_ssid);
         mWifiIp = view.findViewById(R.id.wifi_ip);
@@ -196,7 +189,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         getContext().registerReceiver(netWorkReceiver, intentFilter);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -204,8 +196,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-
     public void getOut() {
         new Thread(new Runnable() {
 
@@ -235,7 +225,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         }).start();
 
     }
-
     class NetWorkReceiver extends BroadcastReceiver {
 
         @Override

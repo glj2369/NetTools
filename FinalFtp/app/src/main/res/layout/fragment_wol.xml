@@ -57,7 +57,7 @@
             android:background="@drawable/border"
             android:completionThreshold="1"
             android:dropDownHorizontalOffset="5dp"
-            android:dropDownHeight="40dp"
+            android:dropDownHeight="200dp"
             android:gravity="center"
             />
     </LinearLayout>

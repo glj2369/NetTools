@@ -44,10 +44,6 @@ import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
 import java.util.List;
 
 import Util.NetUtil;
@@ -82,25 +78,6 @@ public class MainActivity extends AppCompatActivity
     private String[] perms;
 
     @SuppressLint("LongLogTag")
-    public static String getLocalIpAddress() {
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface
-                    .getNetworkInterfaces(); en.hasMoreElements(); ) {
-                NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf
-                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress()) {
-                        return inetAddress.getHostAddress();
-                    }
-                }
-            }
-        } catch (SocketException ex) {
-            Log.e("WifiPreference IpAddress", ex.toString());
-        }
-
-        return null;
-    }
 
     private void initXG() {
         XGPushConfig.enableDebug(this, true);
@@ -121,21 +98,16 @@ public class MainActivity extends AppCompatActivity
         //XGPushManager.bindAccount(getApplicationContext(), "XINGE");
         //XGPushManager.setTag(this,"XINGE");
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
-
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
 
     }
-
     public void initData() {
-        String localIpAddress = getLocalIpAddress();
         mPhone.setText(SystemUtil.getDeviceBrand() + " " + SystemUtil.getSystemModel());
         mAndroid.setText("安卓" + SystemUtil.getSystemVersion());
         int apnType = NetUtil.getAPNType(this);
@@ -161,7 +133,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -188,14 +159,12 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -208,7 +177,6 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -218,7 +186,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
     /**
      * 跳转QQ聊天界面
      */
@@ -235,8 +202,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -244,21 +209,18 @@ public class MainActivity extends AppCompatActivity
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
     public void hideFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.hide(fragment);
         fragmentTransaction.commit();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(netWorkReceiver);
         //XGPushManager.unregisterPush(this);
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -295,7 +257,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     private void initView() {
         mPhone = findViewById(R.id.phone);
         mIpAddress = findViewById(R.id.ipAddress);
@@ -309,7 +270,6 @@ public class MainActivity extends AppCompatActivity
         perms = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE};
 
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -326,7 +286,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
     public void checkPer() {
         if (!EasyPermissions.hasPermissions(this, perms)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -334,13 +293,11 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         Toasty.success(this, "用户授权成功！", Toast.LENGTH_SHORT, true).show();
 
     }
-
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         Toasty.error(this, "用户授权失败！", Toast.LENGTH_SHORT, true).show();
@@ -353,7 +310,6 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -371,7 +327,6 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
     }
-
     class NetWorkReceiver extends BroadcastReceiver {
 
         @Override

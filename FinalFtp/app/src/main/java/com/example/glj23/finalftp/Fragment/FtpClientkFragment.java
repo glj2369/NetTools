@@ -70,11 +70,9 @@ public class FtpClientkFragment extends Fragment implements View.OnClickListener
     private FtpHisAdapter adapter;
     private List<FtpHis> all;
     private AlertDialog builder;
-
     public FtpClientkFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,7 +110,6 @@ public class FtpClientkFragment extends Fragment implements View.OnClickListener
         return inflate;
     }
 
-
     private void initView(View inflate) {
 
         mEtUserName = inflate.findViewById(R.id.etUserName);
@@ -124,7 +121,6 @@ public class FtpClientkFragment extends Fragment implements View.OnClickListener
         mDropDownMenu = inflate.findViewById(R.id.dropDownMenu);
 
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -133,7 +129,6 @@ public class FtpClientkFragment extends Fragment implements View.OnClickListener
         }
         Log.e("---", "ftp客户端碎片销毁");
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

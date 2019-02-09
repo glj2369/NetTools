@@ -57,9 +57,10 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             telBinder = (TelnetService.TelBinder) service;
+            telBinder.conn();
             telnet = telBinder.getTel();
             telnet.setListener(TelnetActivity.this);
-            if (!telnet.isComm()) {
+            if (telnet == null) {
                 Log.e("----", "tel连接");
                 error("连接错误,请重新尝试!");
                 builder1.show();
@@ -99,7 +100,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
 
 
     }
-
     private void initView() {
         mTelnetTv = findViewById(R.id.telnet_Tv);
         mTelnetScrow = findViewById(R.id.telnet_scrow);
@@ -112,8 +112,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         mTelToolbar = findViewById(R.id.tel_toolbar);
         dialog();
     }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -133,7 +131,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         }
         Log.e("---------", "Tel活动销毁！");
     }
-
     @Override
     public void onMessage(final String info) {
         runOnUiThread(new Runnable() {
@@ -157,8 +154,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
-
-
     /**
      * 过滤多余字符
      *
@@ -169,12 +164,10 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         String all = s.replaceAll("\\[1;34m|\\[0m|\\[36;1m|\\[35;1m|\\[1;36|\\]0|\\[m|;", "");
         return all;
     }
-
     @Override
     protected void onResume() {
         super.onResume();
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -196,7 +189,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -205,14 +197,12 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         }
         return super.onKeyDown(keyCode, event);
     }
-
     private void exit() {
         if (builder != null && builder.isShowing()) {
             builder.cancel();
         }
         builder.show();
     }
-
     private void dialog() {
         if (builder == null) {
             builder = new AlertDialog.Builder(this).setTitle("退出?").setMessage("是否断开连接o_o").setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -237,7 +227,6 @@ public class TelnetActivity extends AppCompatActivity implements View.OnClickLis
         }
 
     }
-
     private void error(String s) {
         if (builder != null && builder.isShowing()) {
             builder.cancel();

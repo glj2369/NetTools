@@ -24,8 +24,6 @@ import es.dmoral.toasty.Toasty;
  * A simple {@link Fragment} subclass.
  */
 public class AboutFragment extends Fragment implements View.OnClickListener {
-
-
     private View view;
     /**
      * 清空SQL
@@ -36,8 +34,6 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     public AboutFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,13 +42,11 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         initView(view);
         return view;
     }
-
     private void initView(View view) {
         mClear = view.findViewById(R.id.clear);
         mClear.setOnClickListener(this);
         mGrav = view.findViewById(R.id.grav);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

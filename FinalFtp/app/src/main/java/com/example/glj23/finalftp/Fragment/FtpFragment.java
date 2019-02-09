@@ -74,7 +74,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
     private String username;
     private String psw;
     private String port;
-
     public FtpFragment() {
         // Required empty public constructor
     }
@@ -104,7 +103,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
     private void initView() {
         mBtFtp = view.findViewById(R.id.bt_ftp);
         mBtFtp.setOnClickListener(this);
@@ -117,7 +115,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         mServerSave = view.findViewById(R.id.server_save);
         mServerSave.setOnClickListener(this);
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -139,7 +136,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -196,7 +192,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
     private void error(String s) {
         if (builder != null && builder.isShowing()) {
             builder.cancel();
@@ -210,7 +205,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         builder.getWindow().setWindowAnimations(R.style.mystyle);
         builder.show();
     }
-
     private void save() {
         SharedPreferences.Editor edit = ftpServer.edit();
         edit.putString("user", mServerUser.getText().toString().trim());
@@ -218,7 +212,6 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         edit.putString("port", mServerPort.getText().toString().trim());
         edit.apply();
     }
-
     private void ftpOn() {
         mTvFtpdz.setText("Ftp服务器地址：" + "\nFtp://" + NetworkUtils.getIPAddress(true)
                 + ":" + mServerPort.getText().toString().trim() + "\n");
@@ -226,15 +219,12 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         //Toast.makeText(getActivity(), "ftp服务器已启动！", Toast.LENGTH_SHORT).show();
         mBtFtp.setBackgroundResource(R.drawable.ftpon);
     }
-
     private void ftpOff() {
         mTvFtpdz.setText("Ftp服务器未启动！");
         mTvFtptt.setText("Ftp服务器状态：" + "关闭！");
         // Toast.makeText(getActivity(), "Ftp服务器已关闭！", Toast.LENGTH_SHORT).show();
         mBtFtp.setBackgroundResource(R.drawable.ftpoff);
     }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -248,6 +238,5 @@ public class FtpFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-
 
 }

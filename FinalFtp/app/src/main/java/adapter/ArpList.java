@@ -26,7 +26,6 @@ public class ArpList extends ArrayAdapter<ArpBean> {
         this.context = context;
 
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ArpBean item = getItem(position);

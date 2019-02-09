@@ -34,8 +34,6 @@ import Bean.IpHis;
  * A simple {@link Fragment} subclass.
  */
 public class PingFragment extends Fragment implements View.OnClickListener {
-
-
     private View view;
     private TextView mPingTv;
     /**
@@ -64,12 +62,9 @@ public class PingFragment extends Fragment implements View.OnClickListener {
     private List<IpHis> all;
     private AlertDialog builder;
     private QMUITipDialog tipDialog;
-
     public PingFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,15 +80,12 @@ public class PingFragment extends Fragment implements View.OnClickListener {
         mPingIpEt.setAdapter(adapter);
         return view;
     }
-
-
     private void Dialog() {
         tipDialog = new QMUITipDialog.Builder(getContext())
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord("正在加载")
                 .create();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -104,7 +96,6 @@ public class PingFragment extends Fragment implements View.OnClickListener {
             tipDialog.cancel();
         }
     }
-
     public String[] Ping(String count, String time, String data, String str) {
         String resault = "";
         Process p;
@@ -143,7 +134,6 @@ public class PingFragment extends Fragment implements View.OnClickListener {
 
         return s;
     }
-
     private void initView(View view) {
         mPingTv = view.findViewById(R.id.ping_tv);
         mPingTimeEt = view.findViewById(R.id.ping_timeEt);
@@ -153,7 +143,6 @@ public class PingFragment extends Fragment implements View.OnClickListener {
         mPingStartBt = view.findViewById(R.id.ping_startBt);
         mPingStartBt.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -186,17 +175,12 @@ public class PingFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-
     public static boolean isDomain(final CharSequence input) {
         return isMatch("^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$", input);
     }
-
     public static boolean isMatch(final String regex, final CharSequence input) {
         return input != null && input.length() > 0 && Pattern.matches(regex, input);
     }
-
-
     private class NetPing extends AsyncTask<String, String, String[]> {
 
         @Override

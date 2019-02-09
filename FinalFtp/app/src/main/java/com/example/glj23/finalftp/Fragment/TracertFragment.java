@@ -119,7 +119,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
         mTrBt = view.findViewById(R.id.tr_Bt);
         mTrBt.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -154,15 +153,12 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
     public static boolean isDomain(final CharSequence input) {
         return isMatch("^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$", input);
     }
-
     public static boolean isMatch(final String regex, final CharSequence input) {
         return input != null && input.length() > 0 && Pattern.matches(regex, input);
     }
-
     private void Dialog(Boolean b) {
         if (tipDialog != null && tipDialog.isShowing()) {
             tipDialog.cancel();
@@ -180,7 +176,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-
     private void showResultInLog() {
         StringBuilder stringBuilder = new StringBuilder();
         for (TracertBean container : traces) {
@@ -196,8 +191,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
         mTraTv.setText(stringBuilder);
         ttl = 1;
     }
-
-
     private class ExecuteTracerouteAsyncTask extends AsyncTask<Void, Void, String> {
         private int maxTtl;
         private String url;
@@ -331,8 +324,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
 
 
     }
-
-
     private String parseIpFromPing(String ping) {
         String ip = "";
         if (ping.contains(FROM_PING)) {
@@ -371,8 +362,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
 
         return ip;
     }
-
-
     private String parseIpToPingFromPing(String ping) {
         String ip = "";
         if (ping.contains(PING)) {
@@ -384,8 +373,6 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
 
         return ip;
     }
-
-
     private String parseTimeFromPing(String ping) {
         String time = "";
         if (ping.contains(TIME_PING)) {
@@ -398,13 +385,9 @@ public class TracertFragment extends Fragment implements View.OnClickListener {
 
         return time;
     }
-
-
     private void copyFile() {
         FileUtils.getInstance(getContext()).copyAssetsToSD("ip", "/NetToolDate/ipdata/");
     }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();

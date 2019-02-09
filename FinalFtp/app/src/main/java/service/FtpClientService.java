@@ -30,7 +30,6 @@ public class FtpClientService extends Service {
     private FtpCli ftpCli;
     private FtpBean ftp;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -56,7 +55,6 @@ public class FtpClientService extends Service {
 
         Log.e("---------", "ftp服务创建");
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("---------", Thread.currentThread().getName());
@@ -83,13 +81,10 @@ public class FtpClientService extends Service {
         }
         return super.onStartCommand(intent, flags, startId);
     }
-
     @Override
     public IBinder onBind(Intent intent) {
         return ftpBinder;
     }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -104,8 +99,6 @@ public class FtpClientService extends Service {
         }
         Log.e("----------", "ftp服务销毁");
     }
-
-
     public class FtpBinder extends Binder {
 
         FtpBinder() {

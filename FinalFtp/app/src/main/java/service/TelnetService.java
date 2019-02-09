@@ -75,18 +75,9 @@ public class TelnetService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         tel = (TelHis) intent.getSerializableExtra("tel");
         singleThreadExecutor = Executors.newFixedThreadPool(3);
-        if (telnet == null) {
-            telnet = new TelnetUtil();
-            singleThreadExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    telnet.connect(tel.getIp(), Integer.parseInt(tel.getPort()), tel.getUser(), tel.getPsw());
-                }
-            });
-        }
-
         return super.onStartCommand(intent, flags, startId);
     }
+
 
     public class TelBinder extends Binder {
         public TelnetUtil getTel() {
@@ -95,6 +86,16 @@ public class TelnetService extends Service {
             }
 
             return null;
+        }
+
+        public void conn() {
+            telnet = new TelnetUtil();
+            singleThreadExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    telnet.connect(tel.getIp(), Integer.parseInt(tel.getPort()), tel.getUser(), tel.getPsw());
+                }
+            });
         }
     }
 
